@@ -20,6 +20,7 @@ class Opcio(models.Model):
 	consulta = models.ForeignKey(Consulta,on_delete =models.CASCADE)
 	text = models.CharField(max_length =400)
 	comentari = models.TextField(blank=True,null=True)
+	vots = models.IntegerField(default=0)
 	def __str__(self):
 		return self.text
 
@@ -39,7 +40,3 @@ class Vot(models.Model):
 		return self.usuari.__str__() \
 			   + " | " + self.opcio.consulta.__str__() \
 			   + " | " + self.opcio.__str__()
-
-	'''class Meta:
-		unique_together + ('usuari','consulta')
-	'''
