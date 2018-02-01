@@ -20,7 +20,11 @@ class Opcio(models.Model):
 	consulta = models.ForeignKey(Consulta,on_delete =models.CASCADE)
 	text = models.CharField(max_length =400)
 	comentari = models.TextField(blank=True,null=True)
-	vots = models.IntegerField(default=0)
+	def vots_totals(self):
+		vots = Vot.objects.filter(opcio=self.id).count()
+		return vots
+	def propietari(self):
+		return self.consulta.propietari
 	def __str__(self):
 		return self.text
 
