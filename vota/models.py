@@ -38,8 +38,8 @@ class Invitacio(models.Model):
 
 class Vot(models.Model):
 	opcio = models.ForeignKey(Opcio,on_delete =models.CASCADE)
-	consulta = models.ForeignKey(Consulta,on_delete =models.CASCADE)
-	usuari = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete =models.CASCADE)
+	consulta = models.ForeignKey(Consulta,on_delete =models.CASCADE, null=True)
+	usuari = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete =models.CASCADE, null=True)
 	def __str__(self):
 		return self.usuari.__str__() \
 			   + " | " + self.opcio.consulta.__str__() \
