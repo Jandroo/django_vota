@@ -1,0 +1,29 @@
+{% extends "vota/extends.html" %}
+
+{% block content %}
+	<div id="fullscreen_bg" class="fullscreen_bg"/>
+
+	<div class="container">
+	<form class="form-signin" method="POST" action="{% url 'vota:logoutUser' %}">
+	{% if latest_question_list %}
+		<ul>
+			{% for question in latest_question_list %}
+			<li><a href="{% url 'vota:detail' question.id %}">{{ question.titol }}</a></li>
+			{% endfor %}
+		</ul>
+
+	{% else %}
+	<p>No vota are available.</p>
+	{% endif %}
+
+	{% if user.is_authenticated %}
+	{{ request.user }}
+
+	{% csrf_token %}
+	<input type="submit" value="Logout"/>
+	
+	</form>
+	</div>
+	{% endif %}
+
+{% endblock %}

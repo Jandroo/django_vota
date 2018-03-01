@@ -1,0 +1,22 @@
+{% extends "vota/extends.html" %}
+
+{% block content %}
+<div id="fullscreen_bg" class="fullscreen_bg"/>
+
+<div class="container">
+
+<h1>{{ consulta.titol }}</h1>
+
+<ul>
+{% for choice in consulta.opcio_set.all %}
+    <li>{{ choice.text }} -- {{ choice.vots_totals }} vot{{ choice.vot|pluralize }}</li>
+{% endfor %}
+</ul>
+
+<a href="{% url 'vota:detail' consulta.id %}">Vote again?</a>
+<br>
+<a href="{% url 'vota:index'  %}">Volver al inicio?</a>
+
+</div>
+
+{% endblock %}
